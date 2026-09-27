@@ -37,6 +37,47 @@
 
 2. Правильно написано всі 6 команд. SQL команди виконуються й повертають необхідні дані.
 
-### Результат виконаного ДЗ
+### Результат виконаного ДЗ:
 
-<!-- ![Results](./images/p1_SQL-requests.png) -->
+1. Вибір стовпчиків
+
+-- Всі стовпчики з таблиці products
+SELECT \* FROM products;
+
+![Results](./images/p1a_select_all_products.png)
+
+-- Тільки стовпчики name, phone з таблиці shippers
+SELECT name, phone FROM shippers;
+
+![Results](./images/p1b_select_name_phone_shippers.png)
+
+2. Середнє, максимальне та мінімальне значення price
+
+SELECT AVG(price) AS avg_price, MAX(price) AS max_price, MIN(price) AS min_price
+FROM products;
+
+![Results](./images/p2_avg_max_min_price.png)
+
+3. Унікальні значення category_id та price, сортування за спаданням price, перші 10 рядків
+
+SELECT DISTINCT category_id, price
+FROM products
+ORDER BY price DESC
+LIMIT 10;
+
+![Results](./images/p3_distinct_category_price.png)
+
+4. Кількість продуктів з ціною від 20 до 100
+
+SELECT COUNT(\*) AS total
+FROM products
+WHERE price BETWEEN 20 AND 100;
+
+![Results](./images/p4_count_price_range.png)
+
+5. Кількість продуктів та середня ціна для кожного постачальника
+
+SELECT supplier_id, COUNT(\*) AS num_products, AVG(price) AS avg_price
+FROM products
+GROUP BY supplier_id;
+![Results](./images/p5_count_avg_by_supplier.png)
